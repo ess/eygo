@@ -4,6 +4,7 @@ import (
   "encoding/json"
 )
 
+// User is a data strcture that models a user on the Engine Yard API.
 type User struct {
 	ID        string `json:"id,omitempty"`
 	Name      string `json:"name,omitempty"`
@@ -17,19 +18,18 @@ type User struct {
 	UpdatedAt string `json:"updated_at,omitempty"`
 }
 
-//type UserService interface {
-	//All(url.Values) []*User
-	//Current() (*User, error)
-//}
-
+// UserService is a repository one can use to retrieve User records from
+// the API.
 type UserService struct {
 	Driver Driver
 }
 
+// NewUserService returns a UserService configured with the provided Driver.
 func NewUserService(driver Driver) *UserService {
 	return &UserService{Driver: driver}
 }
 
+// All returns an array of all User records that match the provided Params.
 func (service *UserService) All(params Params) []*User {
   users := make([]*User, 0)
   response := service.Driver.Get("users", params)
@@ -49,6 +49,8 @@ func (service *UserService) All(params Params) []*User {
   return users
 }
 
+// Current returns the user that is associated with the current API session.
+// If there are issues along the way, an error is returned.
 func (service *UserService) Current() (*User, error) {
 	response := service.Driver.Get("users/current", nil)
 	if !response.Okay() {
