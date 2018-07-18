@@ -81,7 +81,7 @@ func (service *AccountService) Rename(account *Account, name string) (*Account, 
 	return service.update(account, body)
 }
 
-type accountEmergencyContactUpdate struct {
+type accountEmergencyContact struct {
 	EmergencyContact string `json:"emergency_contact,omitempty"`
 }
 

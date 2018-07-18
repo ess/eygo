@@ -2,6 +2,7 @@ package eygo
 
 import (
 	"encoding/json"
+  "fmt"
 )
 
 // Environment is a data structure that models an Engine Yard environment.

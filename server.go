@@ -1,9 +1,10 @@
 package eygo
 
 import (
-  "encoding/json"
+	"encoding/json"
 )
 
+// Server is a data structure that models a server on the Engine Yard API.
 type Server struct {
 	ID              int    `json:"id,omitempty"`
 	ProvisionedID   string `json:"provisioned_id,omitempty"`
@@ -29,35 +30,52 @@ type Server struct {
 	} `json:"flavor,omitempty"`
 }
 
-//type ServerService interface {
-	//All(url.Values) []*Server
-	//ForEnvironment(*Environment, url.Values) []*Server
-//}
-
+// ServerService is a repository that one can use to create, retrieve, delete,
+// and perform other operations on Server records on the API.
 type ServerService struct {
 	Driver Driver
 }
 
+// NewServerService returns a ServerService configured with the provided Driver.
 func NewServerService(driver Driver) *ServerService {
 	return &ServerService{Driver: driver}
 }
 
+// All returns an array of Server records that match the given Params.
 func (service *ServerService) All(params Params) []*Server {
-  servers := make([]*Server, 0)
-  response := service.Driver.Get("servers", params)
-
-  if response.Okay() {
-    for _, page := range response.Pages {
-      wrapper := struct {
-        Servers []*Server `json:"servers,omitempty"`
-      }{}
-
-      if err := json.Unmarshal(page, &wrapper); err == nil {
-        servers = append(servers, wrapper.Servers...)
-      }
-    }
-  }
-
-  return servers
+	return service.collection("servers", params)
 }
 
+// ForAccount returns an array of Server records that are both associated with
+// the given Account and matching the given Params.
+func (service *ServerService) ForAccount(account *Account, params Params) []*Server {
+	return service.collection("accounts/"+account.ID+"/servers", params)
+}
+
+// ForEnvironment returns an array of Server records that are both associated
+// with the given Environment and matching the given Params.
+func (service *ServerService) ForEnvironment(environment *Environment, params Params) []*Server {
+	return service.collection(
+		fmt.Sprintf("environments/%d/servers", environment.ID),
+		params,
+	)
+}
+
+func (service *ServerService) collection(path string, params Params) []*Server {
+	servers := make([]*Server, 0)
+	response := service.Driver.Get(path, params)
+
+	if response.Okay() {
+		for _, page := range response.Pages {
+			wrapper := struct {
+				Servers []*Server `json:"servers,omitempty"`
+			}{}
+
+			if err := json.Unmarshal(page, &wrapper); err == nil {
+				servers = append(servers, wrapper.Servers...)
+			}
+		}
+	}
+
+	return servers
+}

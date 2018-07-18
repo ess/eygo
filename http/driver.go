@@ -21,8 +21,8 @@ type Driver struct {
 	token   string
 }
 
-// New takes a base URL for an Engine Yard API and a token, returning a Driver
-// that can be used to interact with the API in question.
+// NewDriver takes a base URL for an Engine Yard API and a token, returning a
+// Driver that can be used to interact with the API in question.
 func NewDriver(baseURL string, token string) (*Driver, error) {
 	url, err := url.Parse(baseURL)
 	if err != nil {

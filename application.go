@@ -2,6 +2,7 @@ package eygo
 
 import (
 	"encoding/json"
+  "fmt"
 )
 
 // Application is a data structure that models an application on the Engine Yard
