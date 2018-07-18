@@ -2,6 +2,7 @@ package eygo
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // ProviderLocation is a data structure that models a resource location on a
@@ -63,7 +64,7 @@ func (service *ProviderLocationService) collection(path string, params Params) [
 	if response.Okay() {
 		for _, page := range response.Pages {
 			wrapper := struct {
-				ProviderLocations []*ProviderLocations `json:"provider_locations,omitempty"`
+				ProviderLocations []*ProviderLocation `json:"provider_locations,omitempty"`
 			}{}
 
 			if err := json.Unmarshal(page, &wrapper); err == nil {
@@ -74,3 +75,19 @@ func (service *ProviderLocationService) collection(path string, params Params) [
 
 	return locations
 }
+
+/*
+Copyright 2018 Dennis Walters
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/

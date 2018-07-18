@@ -1,7 +1,7 @@
 package eygo
 
 import (
-  "encoding/json"
+	"encoding/json"
 )
 
 // Provider is a data structure that models an infrastructure provider on the
@@ -42,13 +42,13 @@ func NewProviderService(driver Driver) *ProviderService {
 
 // All returns an array of all Providers that match the provided Params.
 func (service *ProviderService) All(params Params) []*Provider {
-  return service.collection("providers", params)
+	return service.collection("providers", params)
 }
 
 // ForAccount returns an array of Provider records that are both associated
 // with the provided Account and matches for the provided Params.
 func (service *ProviderService) ForAccount(account *Account, params Params) []*Provider {
-  return service.collection("accounts/" + account.ID + "/providers", params)
+	return service.collection("accounts/"+account.ID+"/providers", params)
 }
 
 func (service *ProviderService) collection(path string, params Params) []*Provider {
@@ -69,3 +69,19 @@ func (service *ProviderService) collection(path string, params Params) []*Provid
 
 	return providers
 }
+
+/*
+Copyright 2018 Dennis Walters
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
