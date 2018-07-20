@@ -12,13 +12,6 @@ type Feature struct {
 	Description string `json:"description,omitempty"`
 }
 
-//type FeatureService interface {
-//All(url.Values) []*Feature
-//ForAccount(*Account, url.Values) []*Feature
-//Enable(*Account, *Feature) error
-//Disable(*Account, *Feature) error
-//}
-
 // FeatureService is a repository one can use to retrieve, enable, and disable
 // Feature records on the API.
 type FeatureService struct {
@@ -36,9 +29,47 @@ func (service *FeatureService) All(params Params) []*Feature {
 	return service.collection("features", params)
 }
 
-// func (service *FeatureService) Enable(account *Account, feature *Feature) error
+// ForAccount returns an array of Features that are both associated with the
+// given Account and matching the given Params.
+func (service *FeatureService) ForAccount(account *Account, params Params) []*Feature {
+	return service.collection("accounts/"+account.ID+"/features", params)
+}
 
-// func (service *FeatureService) Disable(account *Account, feature *Feature) error
+// Enable turns the given Feature on for the Account in question.
+func (service *FeatureService) Enable(account *Account, feature *Feature) error {
+	params := Params{}
+
+	response := service.Driver.Post(
+		"accounts/"+account.ID+"/features/"+feature.ID,
+		params,
+		nil,
+	)
+
+	if !response.Okay() {
+		return response.Error
+	}
+
+	return nil
+}
+
+// Disable turns the given feature off for the Account in question.
+func (service *FeatureService) Disable(account *Account, feature *Feature) error {
+	if feature == nil || len(feature.ID) == 0 {
+		return fmt.Errorf("No valid feature given")
+	}
+
+	if account == nil || len(account.ID) == 0 {
+		return fmt.Errorf("No valid account given")
+	}
+
+	response := service.Driver.Delete("accounts/"+account.ID+"/features/"+feature.ID, Params{})
+
+	if !response.Okay() {
+		return response.Error
+	}
+
+	return nil
+}
 
 func (service *FeatureService) collection(path string, params Params) []*Feature {
 	features := make([]*Feature, 0)
