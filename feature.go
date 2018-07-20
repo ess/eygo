@@ -2,6 +2,7 @@ package eygo
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // Feature is a data structure that models a platform feature on the Engine
