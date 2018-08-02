@@ -7,15 +7,16 @@ import (
 
 // Account is a data structure that models an Engine Yard account.
 type Account struct {
-	ID          string `json:"id,omitempty"`
-	Name        string `json:"name,omitempty"`
-	Plan        string `json:"plan,omitempty"`
-	SupportPlan string `json:"support_plan,omitempty"`
-	Type        string `json:"type,omitempty"`
-	CanceledAt  string `json:"canceled_at,omitempty"`
-	CancelledAt string `json:"cancelled_at,omitempty"`
-	CreatedAt   string `json:"created_at,omitempty"`
-	UpdatedAt   string `json:"updated_at,omitempty"`
+	ID               string `json:"id,omitempty"`
+	Name             string `json:"name,omitempty"`
+	Plan             string `json:"plan,omitempty"`
+	SupportPlan      string `json:"support_plan,omitempty"`
+	Type             string `json:"type,omitempty"`
+	EmergencyContact string `json:"emergency_contact,omitempty"`
+	CanceledAt       string `json:"canceled_at,omitempty"`
+	CancelledAt      string `json:"cancelled_at,omitempty"`
+	CreatedAt        string `json:"created_at,omitempty"`
+	UpdatedAt        string `json:"updated_at,omitempty"`
 }
 
 // AccountService is a repository one can use to retrieve and save Account
@@ -126,7 +127,7 @@ func (service *AccountService) update(account *Account, data []byte) (*Account, 
 		return nil, fmt.Errorf("can't update an account without an ID")
 	}
 
-	response := service.Driver.Put("/accounts/"+account.ID, nil, data)
+	response := service.Driver.Put("accounts/"+account.ID, nil, data)
 	if response.Okay() {
 		wrapped := struct {
 			Account *Account `json:"account,omitempty"`
