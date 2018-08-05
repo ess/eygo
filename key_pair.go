@@ -7,13 +7,14 @@ import (
 
 // KeyPair is a data structure that models a keyPair on the Engine Yard API
 type KeyPair struct {
-	ID          int    `json:"id,omitempty"`
-	CreatedAt   string `json:"created_at,omitempty"`
-	UpdatedAt   string `json:"deleted_at,omitempty"`
-	Fingerprint string `json:"fingerprint,omitempty"`
-	Name        string `json:"name,omitempty"`
-	PublicKey   string `json:"public_key,omitempty"`
-	UserURL     string `json:"user,omitempty"`
+	ID             int    `json:"id,omitempty"`
+	CreatedAt      string `json:"created_at,omitempty"`
+	UpdatedAt      string `json:"deleted_at,omitempty"`
+	Fingerprint    string `json:"fingerprint,omitempty"`
+	Name           string `json:"name,omitempty"`
+	PublicKey      string `json:"public_key,omitempty"`
+	UserURL        string `json:"user,omitempty"`
+	ApplicationURL string `json:"application,omitempty"`
 }
 
 // KeyPairService is a repository that one can use to create, retrieve, delete,
