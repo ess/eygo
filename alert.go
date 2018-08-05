@@ -5,6 +5,7 @@ import (
 	"fmt"
 )
 
+// Alert is a data structure that models an alert on the Engine Yard API
 type Alert struct {
 	ID             string `json:"id,omitempty"`
 	Acknowledged   bool   `json:"acknowledged,omitempty"`
