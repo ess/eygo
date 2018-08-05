@@ -7,28 +7,50 @@ import (
 
 // Server is a data structure that models a server on the Engine Yard API.
 type Server struct {
-	ID              int    `json:"id,omitempty"`
-	ProvisionedID   string `json:"provisioned_id,omitempty"`
-	Role            string `json:"role,omitempty"`
-	Dedicated       bool   `json:"dedicated,omitempty"`
-	Enabled         bool   `json:"enabled,omitempty"`
-	Location        string `json:"location,omitempty"`
-	Name            string `json:"name,omitempty"`
-	PrivateHostname string `json:"private_hostname,omitempty"`
-	PublicHostname  string `json:"public_hostname,omitempty"`
-	ReleaseLabel    string `json:"release_label,omitempty"`
-	State           string `json:"state,omitempty"`
-	EnvironmentURI  string `json:"environment,omitempty"`
-	AccountURI      string `json:"account,omitempty"`
-	ProviderURI     string `json:"provider,omitempty"`
-	CreatedAt       string `json:"created_at,omitempty"`
-	DeletedAt       string `json:"deleted_at,omitempty"`
-	DeprovisionedAt string `json:"deprovisioned_at,omitempty"`
-	ProvisionedAt   string `json:"provisioned_at,omitempty"`
-	UpdatedAt       string `json:"updated_at,omitempty"`
-	Flavor          struct {
+	ID               int       `json:"id,omitempty"`
+	ProvisionedID    string    `json:"provisioned_id,omitempty"`
+	Role             string    `json:"role,omitempty"`
+	Dedicated        bool      `json:"dedicated,omitempty"`
+	Enabled          bool      `json:"enabled,omitempty"`
+	Location         string    `json:"location,omitempty"`
+	Name             string    `json:"name,omitempty"`
+	PrivateHostname  string    `json:"private_hostname,omitempty"`
+	PublicHostname   string    `json:"public_hostname,omitempty"`
+	ReleaseLabel     string    `json:"release_label,omitempty"`
+	State            string    `json:"state,omitempty"`
+	EnvironmentURL   string    `json:"environment,omitempty"`
+	AccountURL       string    `json:"account,omitempty"`
+	ProviderURL      string    `json:"provider,omitempty"`
+	AddressURL       string    `json:"address,omitempty"`
+	CreatedAt        string    `json:"created_at,omitempty"`
+	DeletedAt        string    `json:"deleted_at,omitempty"`
+	DeprovisionedAt  string    `json:"deprovisioned_at,omitempty"`
+	ProvisionedAt    string    `json:"provisioned_at,omitempty"`
+	DisappearedAt    string    `json:"disappeared_at,omitempty"`
+	UpdatedAt        string    `json:"updated_at,omitempty"`
+	SSHPort          int       `json:"ssh_port,omitempty"`
+	IAMRoleURL       string    `json:"iam_role,omitempty"`
+	NetworkURL       string    `json:"network,omitempty"`
+	LatestChefLogURL string    `json:"latest_chef_log,omitempty"`
+	NoDeploy         bool      `json:"no_deploy,omitempty"`
+	Devices          []*Device `json:"devices,omitempty"`
+	Flavor           struct {
 		ID string `json:"id"`
 	} `json:"flavor,omitempty"`
+	ChefStatus struct {
+		Message   string `json:"message,omitempty"`
+		Timestamp string `json:"timestamp,omitempty"`
+		TimeAgo   string `json:"time_ago,omitempty"`
+	} `json:"chef_status,omitempty"`
+}
+
+type Device struct {
+	Size                int    `json:"size,omitempty"`
+	DeleteOnTermination bool   `json:"delete_on_termination,omitempty"`
+	Device              string `json:"device,omitempty"`
+	VolumeType          string `json:"volume_type,omitempty"`
+	Name                string `json:"name,omitempty"`
+	NoDevice            bool   `json:"no_device,omitempty"`
 }
 
 // ServerService is a repository that one can use to create, retrieve, delete,
