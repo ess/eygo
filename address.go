@@ -12,7 +12,8 @@ type Address struct {
 	IPAddress     string `json:"ip_address,omitempty"`
 	Server        string `json:"server,omitempty"`
 	Location      string `json:"location,omitempty"`
-	Provider      string `json:"provider,omitempty"`
+	ProviderURL   string `json:"provider,omitempty"`
+	ServerURL     string `json:"server,omitempty"`
 	CreatedAt     string `json:"created_at,omitempty"`
 	UpdatedAt     string `json:"updated_at,omitempty"`
 }

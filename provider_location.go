@@ -11,12 +11,18 @@ import (
 // At the top level, this is usually an AWS region, and in nested levels it
 // is generally an availability zone.
 type ProviderLocation struct {
-	ID         string  `json:"id,omitempty"`
-	LocationID string  `json:"location_id,omitempty"`
-	Limits     *Limits `json:"limits,omitempty"`
-	CreatedAt  string  `json:"created_at,omitempty"`
-	DisabledAt string  `json:"disabled_at,omitempty"`
-	UpdatedAt  string  `json:"updated_at,omitempty"`
+	ID           string  `json:"id,omitempty"`
+	LocationID   string  `json:"location_id,omitempty"`
+	Limits       *Limits `json:"limits,omitempty"`
+	CreatedAt    string  `json:"created_at,omitempty"`
+	DisabledAt   string  `json:"disabled_at,omitempty"`
+	UpdatedAt    string  `json:"updated_at,omitempty"`
+	LocationName string  `json:"location_name,omitempty"`
+	ProviderURL  string  `json:"provider,omitempty"`
+	ParentURL    string  `json:"parent,omitempty"`
+	Data         struct {
+		VPCByDefault bool `json:"vpc_by_default.omitempty"`
+	} `json:"data,omitempty"`
 }
 
 // Limits is a data structure that models the server and address limits for

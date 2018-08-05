@@ -14,6 +14,8 @@ type Provider struct {
 	CancelledAt   string       `json:"cancelled_at,omitempty"`
 	CreatedAt     string       `json:"created_at,omitempty"`
 	UpdatedAt     string       `json:"updated_at,omitempty"`
+	AccountURL    string       `json:"account,omitempty"`
+	Shared        bool         `json:"shared,omitempty"`
 }
 
 // Credentials is a data structure that models the credentials used to

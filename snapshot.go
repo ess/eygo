@@ -17,9 +17,13 @@ type Snapshot struct {
 	ServerURL      string `json:"server,omitempty"`
 	ProviderURL    string `json:"provider,omitempty"`
 	AccountURL     string `json:"account,omitempty"`
+	VolumeURL      string `json:"volume,omitempty"`
 	CreatedAt      string `json:"created_at,omitempty"`
 	UpdatedAt      string `json:"updated_at,omitempty"`
 	DeletedAt      string `json:"deleted_at,omitempty"`
+	RequestURL     string `json:"snapshot_server_request,omitempty"`
+	Mount          string `json:"mount,omitempty"`
+	Arch           int    `json:"arch,omitempty"`
 	Region         struct {
 		ID   string `json:"id,omitempty"`
 		Name string `json:"name,omitempty"`

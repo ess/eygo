@@ -7,16 +7,25 @@ import (
 
 // Account is a data structure that models an Engine Yard account.
 type Account struct {
-	ID               string `json:"id,omitempty"`
-	Name             string `json:"name,omitempty"`
-	Plan             string `json:"plan,omitempty"`
-	SupportPlan      string `json:"support_plan,omitempty"`
-	Type             string `json:"type,omitempty"`
-	EmergencyContact string `json:"emergency_contact,omitempty"`
-	CanceledAt       string `json:"canceled_at,omitempty"`
-	CancelledAt      string `json:"cancelled_at,omitempty"`
-	CreatedAt        string `json:"created_at,omitempty"`
-	UpdatedAt        string `json:"updated_at,omitempty"`
+	ID                 string `json:"id,omitempty"`
+	Name               string `json:"name,omitempty"`
+	Plan               string `json:"plan,omitempty"`
+	SupportPlan        string `json:"support_plan,omitempty"`
+	Type               string `json:"type,omitempty"`
+	EmergencyContact   string `json:"emergency_contact,omitempty"`
+	AccountNotesURL    string `json:"account_notes,omitempty"`
+	Billable           bool   `json:"billable,omitempty"`
+	BillingPlanSupport string `json:"billing_plan_support,omitempty"`
+	BillingRequired    bool   `json:"billing_required,omitempty"`
+	BillingSignupURL   string `json:"billing_signup_url,omitempty"`
+	Finalized          bool   `json:"finalized,omitempty"`
+	SignupVia          string `json:"signup_via,omitempty"`
+	SupportTrialStatus string `json:"support_trial_status,omitempty"`
+	Cancellation       string `json:cancellation,omitempty`
+	CanceledAt         string `json:"canceled_at,omitempty"`
+	CancelledAt        string `json:"cancelled_at,omitempty"`
+	CreatedAt          string `json:"created_at,omitempty"`
+	UpdatedAt          string `json:"updated_at,omitempty"`
 }
 
 // AccountService is a repository one can use to retrieve and save Account
