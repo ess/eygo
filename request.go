@@ -21,6 +21,10 @@ type Request struct {
 	FinishedAt    string `json:"finished_at,omitempty"`
 	StartedAt     string `json:"started_at,omitempty"`
 	UpdatedAt     string `json:"updated_at,omitempty"`
+	Stage         string `json:"stage,omitempty"`
+	AccountURL    string `json:"account,omitempty"`
+	CallbackURL   string `json:"callback_url,omitempty"`
+	ResourceURL   string `json:"resource,omitempty"`
 }
 
 // RequestService is a repository one can use to retrieve Request records from
