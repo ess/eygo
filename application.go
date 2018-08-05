@@ -16,6 +16,7 @@ type Application struct {
 	CreatedAt  string `json:"created_at,omitempty"`
 	DeletedAt  string `json:"deleted_at,omitempty"`
 	UpdatedAt  string `json:"updated_at,omitempty"`
+	AccountURL string `json:"account,omitempty"`
 }
 
 // ApplicationService is a repository one can use to create, retrieve, delete,
