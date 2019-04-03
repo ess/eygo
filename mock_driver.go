@@ -55,6 +55,12 @@ func (driver *MockDriver) AddResponse(method string, path string, response Respo
 	driver.responses.add(method, path, response)
 }
 
+func (driver *MockDriver) RemoveResponse(method string, path string) {
+	driver.setup()
+
+	driver.responses.remove(method, path)
+}
+
 func (driver *MockDriver) handle(method string, path string) Response {
 	driver.setup()
 
