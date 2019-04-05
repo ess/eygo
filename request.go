@@ -3,6 +3,8 @@ package eygo
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/ess/debuggable"
 )
 
 // Request is a data structure that models a long-running request on the
@@ -102,6 +104,10 @@ func (service *RequestService) collection(path string, params Params) []*Request
 
 			if err := json.Unmarshal(page, &wrapper); err == nil {
 				requests = append(requests, wrapper.Requests...)
+			} else {
+				if debuggable.Enabled() {
+					fmt.Println("[DEBUG] Couldn't unmarshal the request:", err)
+				}
 			}
 		}
 	}
