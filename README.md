@@ -1,5 +1,6 @@
 ## History ##
 
+* v0.3.6 - Request.Resource is a variant type
 * v0.3.5 - Added debugging to request service
 * v0.3.4 - Fixed server chef status format
 * v0.3.3 - Added debugging to server service
