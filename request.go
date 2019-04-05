@@ -13,20 +13,20 @@ import (
 // Notable examples of such requests are starting a server, booting an
 // environment, and so on.
 type Request struct {
-	ID            string `json:"id,omitempty"`
-	Type          string `json:"type,omitempty"`
-	Successful    bool   `json:"successful,omitempty"`
-	Message       string `json:"message,omitempty"`
-	RequestStatus string `json:"request_status,omitempty"`
-	CreatedAt     string `json:"created_at,omitempty"`
-	DeletedAt     string `json:"deleted_at,omitempty"`
-	FinishedAt    string `json:"finished_at,omitempty"`
-	StartedAt     string `json:"started_at,omitempty"`
-	UpdatedAt     string `json:"updated_at,omitempty"`
-	Stage         string `json:"stage,omitempty"`
-	AccountURL    string `json:"account,omitempty"`
-	CallbackURL   string `json:"callback_url,omitempty"`
-	ResourceURL   string `json:"resource,omitempty"`
+	ID            string      `json:"id,omitempty"`
+	Type          string      `json:"type,omitempty"`
+	Successful    bool        `json:"successful,omitempty"`
+	Message       string      `json:"message,omitempty"`
+	RequestStatus string      `json:"request_status,omitempty"`
+	CreatedAt     string      `json:"created_at,omitempty"`
+	DeletedAt     string      `json:"deleted_at,omitempty"`
+	FinishedAt    string      `json:"finished_at,omitempty"`
+	StartedAt     string      `json:"started_at,omitempty"`
+	UpdatedAt     string      `json:"updated_at,omitempty"`
+	Stage         string      `json:"stage,omitempty"`
+	AccountURL    string      `json:"account,omitempty"`
+	CallbackURL   string      `json:"callback_url,omitempty"`
+	Resource      interface{} `json:"resource,omitempty"`
 }
 
 // RequestService is a repository one can use to retrieve Request records from
