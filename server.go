@@ -39,7 +39,7 @@ type Server struct {
 	Flavor           struct {
 		ID string `json:"id"`
 	} `json:"flavor,omitempty"`
-	ChefStatus struct {
+	ChefStatus []struct {
 		Message   string `json:"message,omitempty"`
 		Timestamp string `json:"timestamp,omitempty"`
 		TimeAgo   string `json:"time_ago,omitempty"`
