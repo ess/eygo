@@ -1,5 +1,6 @@
 ## History ##
 
+* v0.3.2 - Added debugging to http driver
 * v0.3.1 - MockDriver gets RemoveResponse
 * v0.3.0 - So many additions
 * v0.2.1 - So, maybe I shouldn't do stuff at five in the morn
