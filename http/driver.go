@@ -10,6 +10,8 @@ import (
 	"strings"
 	"time"
 
+	"github.com/ess/debuggable"
+
 	"github.com/ess/eygo"
 )
 
@@ -95,6 +97,11 @@ func (driver *Driver) rawRequest(verb string, path string, params url.Values, da
 
 	defer response.Body.Close()
 
+	if debuggable.Enabled() {
+		fmt.Println("[DEBUG] Method:", verb)
+		fmt.Println("[DEBUG] Status code:", response.StatusCode)
+	}
+
 	if response.StatusCode > 299 {
 		return nil, nil,
 			fmt.Errorf(
@@ -129,6 +136,15 @@ func (driver *Driver) makeRequest(verb string, path string, params url.Values, d
 		if _, p, e := driver.rawRequest(verb, path, params, data); e == nil {
 			pages = append(pages, p)
 		}
+	}
+
+	if debuggable.Enabled() {
+		readable := make([]string, 0)
+		for _, page := range pages {
+			readable = append(readable, string(page))
+		}
+
+		fmt.Println("[DEBUG] Body:", readable)
 	}
 
 	return eygo.Response{pages, nil}
@@ -184,7 +200,13 @@ func (driver *Driver) constructRequestURL(path string, params url.Values) string
 		RawQuery: params.Encode(),
 	}
 
-	return requestURL.String()
+	result := requestURL.String()
+
+	if debuggable.Enabled() {
+		fmt.Println("[DEBUG] Request URL:", result)
+	}
+
+	return result
 }
 
 /*
