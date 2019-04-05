@@ -3,6 +3,8 @@ package eygo
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/ess/debuggable"
 )
 
 // Server is a data structure that models a server on the Engine Yard API.
@@ -96,6 +98,10 @@ func (service *ServerService) collection(path string, params Params) []*Server {
 
 			if err := json.Unmarshal(page, &wrapper); err == nil {
 				servers = append(servers, wrapper.Servers...)
+			} else {
+				if debuggable.Enabled() {
+					fmt.Println("[DEBUG] Couldn't unmarshal the server data:", err)
+				}
 			}
 		}
 	}
